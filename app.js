@@ -140,7 +140,7 @@ const getData = async () => {
                         save.disabled = true
                         save.innerHTML = `<span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
   <span role="status">Loading...</span>`
-                        save.setAttribute('disabled')
+                        save.disabled = true
                         a.preventDefault()
                         console.log(a)
                         const putData = async () => {
@@ -208,3 +208,4 @@ const getData = async () => {
 }
 
 getData()
+
