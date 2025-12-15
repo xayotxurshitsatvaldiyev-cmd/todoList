@@ -8,8 +8,13 @@ const formApi = document.getElementById('editForm')
 const save = document.getElementById('saveTodo')
 const editBtn = document.querySelectorAll('.btnEdit')
 const kutibTurish = document.getElementById('kutibTurish')
+const createBTN = document.getElementById('createBTN')
+const hechnarsa = document.getElementById('hechnarsa')
 
 createTodo.addEventListener('submit', async (n) => {
+    createBTN.disabled = true
+    createBTN.innerHTML = `<span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+  <span role="status">Loading...</span>`
     n.preventDefault()
     try {
         const data = await fetch(api, {
@@ -52,6 +57,9 @@ const getData = async () => {
 
         if (ress) {
             kutibTurish.classList.add('d-none')
+            if(ress.data[0] == undefined) {
+                hechnarsa.classList.remove('d-none')
+            }
             ress.data.forEach((n) => {
                 const div = document.createElement('div')
                 div.innerHTML = `
@@ -129,7 +137,12 @@ const getData = async () => {
                     getDataValue()
 
                     save.addEventListener('click', (a) => {
+                        save.disabled = true
+                        save.innerHTML = `<span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+  <span role="status">Loading...</span>`
+                        save.setAttribute('disabled')
                         a.preventDefault()
+                        console.log(a)
                         const putData = async () => {
                             try {
                                 const daattaa = await fetch(`${api}/${idsi}`, {
@@ -142,17 +155,17 @@ const getData = async () => {
                                         "todoDescription": desc.value
                                     })
                                 })
-
                                 const ressss = await daattaa.json()
                                 if (ressss) {
                                     window.location.reload()
                                 }
+
                             } catch (error) {
                                 console.log(`Xatolik: ${error.message}`)
                             }
                         }
-
                         putData()
+
                     })
 
                 })
@@ -166,6 +179,9 @@ const getData = async () => {
                     const rmvv = document.getElementById('removeBtn')
 
                     rmvv.addEventListener('click', () => {
+                        rmvv.disabled = true
+                        rmvv.innerHTML = `<span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+  <span role="status">Loading...</span>`
                         const deleteData = async () => {
                             try {
                                 const dattta = await fetch(`${api}/${y}`, {
@@ -173,8 +189,8 @@ const getData = async () => {
                                 })
 
                                 const rrss = await dattta.json()
-                                if(rrss) {
-                                    window.location.reload()
+                                if (rrss) {
+                                     window.location.reload()
                                 }
                             } catch (error) {
                                 console.log(`Xatolik: ${error.message}`)
@@ -190,6 +206,5 @@ const getData = async () => {
         console.log(`Xatolik: ${error.message}`)
     }
 }
-
 
 getData()
