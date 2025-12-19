@@ -85,7 +85,7 @@ const getData = async () => {
                 div.innerHTML = `
                 <div class="card my-3">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                              <h3>${n.todoName}:</h3>
+                              <h3 class="card-text">${n.todoName}:</h3>
                               <div class="d-flex">
                                 <button type="button" class="btn d-flex border-0 btnEdit" idchasi="${n._id}" data-bs-toggle="modal" data-bs-target="#editModal">
                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
@@ -102,7 +102,7 @@ const getData = async () => {
                           </div>
                           <div class="card-body my-3">
                               <figure>
-                              <figcaption class="blockquote-footer">
+                              <figcaption class="blockquote-footer card-text">
                               ${n.todoDescription}
                               </figcaption>
                               </figure>

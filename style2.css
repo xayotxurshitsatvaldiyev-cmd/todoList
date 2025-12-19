@@ -1,3 +1,7 @@
 body {
     background: #335748 !important;
 }
+
+.card-text {
+    color: #3f9f876a;
+}
